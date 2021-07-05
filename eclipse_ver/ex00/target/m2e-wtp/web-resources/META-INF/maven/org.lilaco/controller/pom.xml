@@ -140,11 +140,12 @@
 		    <version>2.7.4</version>
 		</dependency>
 
+		<!-- Illegal Exception 이 발생하므로, MYBATIS 버전을 교재보다 최신화한다. -->
 		<!-- mybatis -->
 		<dependency>
 		    <groupId>org.mybatis</groupId>
 		    <artifactId>mybatis</artifactId>
-		    <version>3.4.6</version>
+		    <version>3.5.4</version>
 		</dependency>
 
 		<!-- mybatis-spring -->

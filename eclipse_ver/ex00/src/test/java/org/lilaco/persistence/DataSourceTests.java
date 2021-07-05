@@ -35,17 +35,17 @@ public class DataSourceTests {
 		}
 	}
 
-//	@Setter(onMethod_ = { @Autowired})
-//	private SqlSessionFactory sqlSessionFactory;
-//
-//	@Test
-//	public void testMybatis() {
-//		try(SqlSession session = sqlSessionFactory.openSession();
-//				Connection con = session.getConnection();) {
-//			log.info(session);
-//			log.info(con);
-//		} catch (Exception e) {
-//			fail(e.getMessage());
-//		}
-//	}
+	@Setter(onMethod_ = { @Autowired})
+	private SqlSessionFactory sqlSessionFactory;
+
+	@Test
+	public void testMybatis() {
+		try(SqlSession session = sqlSessionFactory.openSession();
+				Connection con = session.getConnection();) {
+			log.info(session);
+			log.info(con);
+		} catch (Exception e) {
+			fail(e.getMessage());
+		}
+	}
 }
