@@ -2,14 +2,11 @@
 <project version="4">
   <component name="ArtifactsWorkspaceSettings">
     <artifacts-to-build>
-      <artifact name="src:war exploded" />
+      <artifact name="Gugu_spring:Web exploded" />
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dcbdcebc-d7b3-42a1-a7bf-13384ccbb34b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Gugu_spring.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/src_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/Gugu_spring_Web_exploded.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -29,6 +26,7 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+    <option name="UPDATE_TYPE" value="MERGE" />
   </component>
   <component name="LogFilters">
     <option name="FILTER_ERRORS" value="false" />
@@ -163,7 +161,7 @@
       <updated>1625136605142</updated>
       <workItem from="1625136606375" duration="5035000" />
       <workItem from="1625186368711" duration="62000" />
-      <workItem from="1625719994955" duration="816000" />
+      <workItem from="1625719994955" duration="1590000" />
     </task>
     <servers />
   </component>
