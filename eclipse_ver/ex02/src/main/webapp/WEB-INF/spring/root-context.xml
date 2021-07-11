@@ -30,6 +30,6 @@
 	<mybatis-spring:scan base-package="org.lilaco.mapper"/>
 	
 	<!-- Bean 관리 -->	
-	
+	<context:component-scan base-package="org.lilaco.service"></context:component-scan>
 	
 </beans>
