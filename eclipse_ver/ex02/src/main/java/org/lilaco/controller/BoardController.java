@@ -45,10 +45,11 @@ public class BoardController {
 		return "redirect:/board/list"; // redirect: = 스프링 MVC가 response.sendRedirect()를 내부적으로 처리.
 	}
 	
-	@GetMapping("/get")
+	// 수정 / 삭제 페이지로 이동 259 page
+	@GetMapping({"/get","/modify"})
 	public void get(@RequestParam("bno") Long bno, Model model) {
 		
-		log.info("/get");
+		log.info("/get or modify");
 		model.addAttribute("board", service.get(bno));
 	}
 	
