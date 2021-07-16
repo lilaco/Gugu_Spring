@@ -17,6 +17,8 @@
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             Board List Page
+                            <!-- 250 pages -->
+                            <button id="regBtn" type="button" class="btn btn-xs pull-right">Register New Board</button>
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
@@ -91,5 +93,10 @@
 			
 			$("#myModal").modal("show");
 		}
+		
+		// regBtn을 클릭하여 register.jsp로 이동
+		$("#regBtn").on("click", function(){
+			self.location ="/board/register";
+		})
 	});
 </script>
