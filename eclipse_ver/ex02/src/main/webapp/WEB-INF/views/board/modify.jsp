@@ -75,9 +75,9 @@ $(document).ready(function(){
 		if(operation === 'remove') {
 			formObj.attr("action", "/board/remove");
 		} else if (operation === 'list'){
-			//move to list
-			self.location = "/board/list";
-			return;
+			//move to list ,form으로 목록페이지로 이동할 수 있도록 한다.
+			formObj.attr("action", "/board/list").attr("method","get");
+			formObj.empty();
 		}
 		formObj.submit();
 	});

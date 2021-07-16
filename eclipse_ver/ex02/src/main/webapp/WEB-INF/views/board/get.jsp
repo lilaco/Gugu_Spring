@@ -38,8 +38,14 @@
 						<input class="form-control" name="writer" value="<c:out value="${board.writer }"/>" readonly="readonly"/>
 					</div>
 					
-					<button data-oper="modify" class="btn btn-default" onclick="location.href='/board/modify?bno=<c:out value="${board.bno}"/>'">Modify</button>
-					<button data-oper="list" class="btn btn-info" onclick="location.href='/board/list'">List</button>
+					<button data-oper="modify" class="btn btn-default">Modify</button>
+					<button data-oper="list" class="btn btn-info">List</button>
+					
+					<!-- 수정, 목록 버튼을 form 처리하여 링크를 처리한다. 264 pages -->
+					<!-- type="hidden"으로 설정시 내용은 화면에 보이지 않는다. -->
+					<form id="operForm" action="/board/modify" method="get">
+						<input type="hidden" id="bno" name="bno" value='<c:out value="${board.bno}"/>'>
+					</form>
 				
 			</div><!-- end panel-body -->
 		</div><!-- end panel-default -->
@@ -47,3 +53,23 @@
 </div><!-- end row -->
 
 <%@ include file="../includes/footer.jsp" %>
+
+<script>
+$(document).ready(function(){
+	var operForm = $("#operForm");
+	
+	$("button[data-oper='modify']").on("click", function(e){
+		
+		operForm.attr("action","/board/modify").submit();
+		
+	});
+	
+	$("button[data-oper='list']").on("click", function(e){
+		
+		operForm.find("#bno").remove();
+		operForm.attr("action","/board/list");
+		operForm.submit();
+		
+	});
+});
+</script>
