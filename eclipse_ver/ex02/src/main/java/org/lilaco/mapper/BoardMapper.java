@@ -13,7 +13,7 @@ public interface BoardMapper {
 	public List<BoardVO> getList();
 	
 	// Pagination을 위한 리스트 처리
-	public List<BoardVO> getLishWithPaging(Criteria cri);
+	public List<BoardVO> getListWithPaging(Criteria cri);
 	
 	// insert만 처리되고 생성된 PK 값을 알 필요가 없는 경우
 	public void insert(BoardVO board);

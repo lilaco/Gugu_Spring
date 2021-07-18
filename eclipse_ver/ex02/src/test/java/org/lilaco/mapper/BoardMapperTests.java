@@ -24,7 +24,7 @@ public class BoardMapperTests {
 	@Test
 	public void testGetList() {
 		mapper.getList().forEach(board -> log.info(board));
-	}
+	};
 	
 	@Test
 	public void testInsert() {
@@ -36,7 +36,7 @@ public class BoardMapperTests {
 		mapper.insert(board);
 		
 		log.info(board);
-	}
+	};
 	
 	@Test
 	public void testInsertSelectKey() {
@@ -48,7 +48,7 @@ public class BoardMapperTests {
 		mapper.insertSelectKey(board);
 		
 		log.info(board);
-	}
+	};
 	
 	@Test
 	public void testRead() {
@@ -56,12 +56,12 @@ public class BoardMapperTests {
 		BoardVO board = mapper.read(5L);
 		
 		log.info(board);
-	}
+	};
 	
 	@Test
 	public void testDelete() {
 		log.info("DELETE COUNT: " + mapper.delete(3L));
-	}
+	};
 	
 	@Test
 	public void testUpdate() {
@@ -74,14 +74,14 @@ public class BoardMapperTests {
 		
 		int count = mapper.update(board);
 		log.info("UPDATE COUNT: " + count);
-	}
+	};
 	
 	@Test
 	public void testPaging() {
 		Criteria cri = new Criteria();
 		
-		List<BoardVO> list = mapper.getLishWithPaging(cri);
+		List<BoardVO> list = mapper.getListWithPaging(cri);
 		
 		list.forEach(board -> log.info(board));
-	}
+	};
 }
