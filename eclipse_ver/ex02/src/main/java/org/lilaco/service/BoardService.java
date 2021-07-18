@@ -3,6 +3,7 @@ package org.lilaco.service;
 import java.util.List;
 
 import org.lilaco.domain.BoardVO;
+import org.lilaco.domain.Criteria;
 
 public interface BoardService {
 	// create
@@ -19,4 +20,6 @@ public interface BoardService {
 	
 	// list
 	public List<BoardVO> getList();
+	
+	public List<BoardVO> getListPaging(Criteria cri);
 }

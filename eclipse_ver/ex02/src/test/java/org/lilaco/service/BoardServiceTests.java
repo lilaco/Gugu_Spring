@@ -1,10 +1,12 @@
 package org.lilaco.service;
 
 import static org.junit.Assert.assertNotNull;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.log;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.lilaco.domain.BoardVO;
+import org.lilaco.domain.Criteria;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -42,6 +44,11 @@ public class BoardServiceTests {
 	@Test
 	public void testGetList() {
 		service.getList().forEach(board -> log.info(board));
+	}
+	
+	@Test
+	public void testGetListPaging() {
+		service.getListPaging(new Criteria(2,10)).forEach(board -> log.info(board));
 	}
 	
 	@Test

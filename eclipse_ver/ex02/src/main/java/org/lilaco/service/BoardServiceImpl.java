@@ -3,6 +3,7 @@ package org.lilaco.service;
 import java.util.List;
 
 import org.lilaco.domain.BoardVO;
+import org.lilaco.domain.Criteria;
 import org.lilaco.mapper.BoardMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -50,6 +51,12 @@ public class BoardServiceImpl implements BoardService {
 		log.info("list가 실행됩니다...");
 		
 		return mapper.getList();
+	}
+
+	@Override
+	public List<BoardVO> getListPaging(Criteria cri) {
+		log.info("get List with criteria: " + cri);
+		return mapper.getListWithPaging(cri);
 	}
 	
 	
