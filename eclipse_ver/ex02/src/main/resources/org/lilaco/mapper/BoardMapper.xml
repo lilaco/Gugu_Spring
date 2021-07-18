@@ -9,6 +9,23 @@
 			select * from tbl_board where bno > 0
 		]]>
 	</select>
+	
+	<!-- List Pagination 294 pages -->
+	<select id="getListWithPaging" resultType="org.lilaco.domain.BoardVO">
+		<![CDATA[
+			select
+				bno, title, content, writer, regdate, updatedate
+			from
+				(
+				select /*+INDEX_DESC(tbl_board pk_board) */
+					rownum rn, bno, title, content, writer, regdate, updatedate
+				from
+					tbl_board
+				where rownum <= 20
+				)
+			where rn > 10
+		]]>
+	</select>
 
 	<insert id="insert">
 		insert into tbl_board (bno, title, content, writer) 
