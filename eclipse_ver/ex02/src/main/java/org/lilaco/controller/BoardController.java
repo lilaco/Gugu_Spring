@@ -2,6 +2,7 @@ package org.lilaco.controller;
 
 import org.lilaco.domain.BoardVO;
 import org.lilaco.domain.Criteria;
+import org.lilaco.domain.PageDTO;
 import org.lilaco.service.BoardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,17 +25,18 @@ public class BoardController {
 	@Setter(onMethod_ = {@Autowired})
 	private BoardService service;
 	
-	@GetMapping("/list")
-	public void list(Model model) {
-		
-		log.info("list");
-		model.addAttribute("list", service.getList());
-	}
+//	@GetMapping("/list")
+//	public void list(Model model) {
+//		
+//		log.info("list");
+//		model.addAttribute("list", service.getList());
+//	}
 	
-	@GetMapping("/list/paging")
+	@GetMapping("/list")
 	public void listPaging(Criteria cri, Model model) {
 		log.info("listPaging: " + cri);
 		model.addAttribute("list", service.getListPaging(cri));
+		model.addAttribute("pageMaker", new PageDTO(cri,123));
 	}
 	
 	@GetMapping("/register")
