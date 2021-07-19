@@ -45,6 +45,8 @@
 					<!-- type="hidden"으로 설정시 내용은 화면에 보이지 않는다. -->
 					<form id="operForm" action="/board/modify" method="get">
 						<input type="hidden" id="bno" name="bno" value='<c:out value="${board.bno}"/>'>
+						<input type="hidden" name="pageNum" value="<c:out value='${cri.pageNum}'/>">
+						<input type="hidden" name="amount" value="<c:out value='${cri.amount}'/>">
 					</form>
 				
 			</div><!-- end panel-body -->
