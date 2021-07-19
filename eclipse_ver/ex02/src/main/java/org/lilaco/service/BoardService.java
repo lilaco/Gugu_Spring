@@ -22,4 +22,7 @@ public interface BoardService {
 	public List<BoardVO> getList();
 	
 	public List<BoardVO> getListPaging(Criteria cri);
+	
+	// total count
+	public int getTotal(Criteria cri);
 }

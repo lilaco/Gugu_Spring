@@ -24,7 +24,6 @@
 						<label>Bno</label> 
 						<input class="form-control" name="bno" value="<c:out value="${board.bno}"/>" readonly="readonly"/>
 					</div>
-					
 					<div class="form-group">
 						<label>Title</label>
 						<input class="form-control" name="title" value="<c:out value="${board.title}"/>"/>	
@@ -77,7 +76,13 @@ $(document).ready(function(){
 		} else if (operation === 'list'){
 			//move to list ,form으로 목록페이지로 이동할 수 있도록 한다.
 			formObj.attr("action", "/board/list").attr("method","get");
+			//.clone()?? form태그에서 필요한 부분만 잠시 복사(clone)하여 보관.
+			var pageNumTag = $("input[name='pageNum']").clone();
+			var amountTag = $("input[name='amount']").clone();
+			
 			formObj.empty();
+			formObj.append(pageNumTag);
+			formObj.append(amountTag);
 		}
 		formObj.submit();
 	});
