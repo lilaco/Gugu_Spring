@@ -4,6 +4,27 @@
 <!-- 반드시 mapper 의 namespace 속성값을 Mapper 인터페이스와 동일한 이름으로 지정. -->
 <mapper namespace="org.lilaco.mapper.BoardMapper">
 
+	<!-- Mybatis는 sql 이라는 태그를 이용해서 SQL의 일부를 별도로 보관하고, 필요한 경우에 include 시키는 형태로 사용할 수 있다. -->
+	<sql id="criteria">
+		<trim prefix="(" suffix=") AND " prefixOverrides="OR">
+			<foreach item="type" collection="typeArr">
+				<trim prefix="OR">
+					<choose>
+						<when test="type == 'T'.toString()">
+							title like '%'||#{keyword}||'%'
+						</when>
+						<when test="type == 'C'.toString()">
+							content like '%'||#{keyword}||'%'
+						</when>
+						<when test="type == 'W'.toString()">
+							writer like '%'||#{keyword}||'%'
+						</when>
+					</choose>
+				</trim>
+			</foreach>
+		</trim>
+	</sql>
+
 	<select id="getList" resultType="org.lilaco.domain.BoardVO">
 		<![CDATA[
 			select * from tbl_board where bno > 0
@@ -24,23 +45,10 @@
 					tbl_board
 				where 
 		]]>
-			<trim prefix="(" suffix=") AND " prefixOverrides="OR">
-				<foreach item="type" collection="typeArr">
-					<trim prefix="OR">
-						<choose>
-							<when test="type == 'T'.toString()">
-								title like '%'||#{keyword}||'%'
-							</when>
-							<when test="type == 'C'.toString()">
-								content like '%'||#{keyword}||'%'
-							</when>
-							<when test="type == 'W'.toString()">
-								writer like '%'||#{keyword}||'%'
-							</when>
-						</choose>
-					</trim>
-				</foreach>
-			</trim>
+		
+		<!-- sql태그에 작성한 것 include로 추가하기 -->
+		<include refid="criteria"></include>
+		
 		<![CDATA[
 			rownum <= #{pageNum} * #{amount}
 			)
@@ -50,7 +58,13 @@
 	
 	<!-- Total Count -->
 	<select id="getTotalCount" resultType="int">
-		select count(*) from tbl_board where bno > 0	
+		select 
+			count(*) 
+		from 
+			tbl_board 
+		where 
+			<include refid="criteria"></include>
+			bno > 0	
 	</select>
 
 	<insert id="insert">
@@ -86,4 +100,5 @@
 		where 
 			bno = #{bno}
 	</update>
+	
 </mapper> 
