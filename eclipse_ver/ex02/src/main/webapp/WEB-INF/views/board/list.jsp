@@ -140,6 +140,10 @@
 		<form id="actionForm" action="/board/list" method="get">
 			<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}">
 			<input type="hidden" name="amount" value="${pageMaker.cri.amount}">
+			
+			<!-- actionForm에 검색 조건과 키워드를 같이 전달하도록 수정한다. (검색 후에도 점색 조건 키워드가 사라지지 않도록 함.) -->
+			<input type="hidden" name="type" value='<c:out value="${pageMaker.cri.type}"/>'>
+			<input type="hidden" name="keyword" value='<c:out value="${pageMaker.cri.keyword}"/>'>
 		</form>
 		
 <script type="text/javascript">

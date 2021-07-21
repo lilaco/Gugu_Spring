@@ -76,8 +76,13 @@ public class BoardController {
 			rttr.addFlashAttribute("result", "success");
 		}
 		
+		// RedirectAttributes에 대해 찾아보기.
 		rttr.addAttribute("pageNum", cri.getPageNum());
 		rttr.addAttribute("amount", cri.getAmount());
+		// 검색조건, 키워드 추가
+		rttr.addAttribute("type", cri.getType());
+		rttr.addAttribute("keyword", cri.getKeyword());
+		
 		
 		return "redirect:/board/list";
 	}
@@ -90,6 +95,9 @@ public class BoardController {
 		}
 		rttr.addAttribute("pageNum", cri.getPageNum());
 		rttr.addAttribute("amount", cri.getAmount());
+		// 검색조건, 키워드 추가
+		rttr.addAttribute("type", cri.getType());
+		rttr.addAttribute("keyword", cri.getKeyword());
 		
 		return "redirect:/board/list";
 	}

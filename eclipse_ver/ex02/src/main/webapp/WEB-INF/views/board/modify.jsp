@@ -19,6 +19,11 @@
 			<!-- panel-heading end point -->
 			<div class="panel-body">
 				<form role="form" action="/board/modify" method="post">
+					<input type="hidden" name="pageNum" value="<c:out value='${cri.pageNum}'/>">
+					<input type="hidden" name="amount" value="<c:out value='${cri.amount}'/>">
+					<!-- 수정페이지에도 검색키워드(keyword)와 검색조건(type)을 넘긴다 -->
+					<input type="hidden" name="keyword" value="<c:out value='${cri.keyword}'/>">
+					<input type="hidden" name="type" value="<c:out value='${cri.type}'/>">
 				
 					<div class="form-group">
 						<label>Bno</label> 
@@ -79,10 +84,19 @@ $(document).ready(function(){
 			//.clone()?? form태그에서 필요한 부분만 잠시 복사(clone)하여 보관.
 			var pageNumTag = $("input[name='pageNum']").clone();
 			var amountTag = $("input[name='amount']").clone();
+			//키워드(keyword), 검색조건(type) 추가
+			var keywordTag = $("input[name='keyword']").clone();
+			var typeTag = $("input[name='type']").clone();
 			
 			formObj.empty();
+			
 			formObj.append(pageNumTag);
 			formObj.append(amountTag);
+			//키워드(keyword), 검색조건(type) 추가
+			//따라서 수정페이지에서 목록으로 넘어가도 검색조건이 유지된다.
+			formObj.append(keywordTag);
+			formObj.append(typeTag);
+			
 		}
 		formObj.submit();
 	});
