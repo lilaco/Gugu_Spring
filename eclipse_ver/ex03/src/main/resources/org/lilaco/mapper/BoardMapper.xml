@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 반드시 mapper 의 namespace 속성값을 Mapper 인터페이스와 동일한 이름으로 지정. -->
+<mapper namespace="org.lilaco.mapper.BoardMapper">
+
+	<!-- Mybatis는 sql 이라는 태그를 이용해서 SQL의 일부를 별도로 보관하고, 필요한 경우에 include 시키는 형태로 사용할 수 있다. -->
+	<sql id="criteria">
+		<trim prefix="(" suffix=") AND " prefixOverrides="OR">
+			<foreach item="type" collection="typeArr">
+				<trim prefix="OR">
+					<choose>
+						<when test="type == 'T'.toString()">
+							title like '%'||#{keyword}||'%'
+						</when>
+						<when test="type == 'C'.toString()">
+							content like '%'||#{keyword}||'%'
+						</when>
+						<when test="type == 'W'.toString()">
+							writer like '%'||#{keyword}||'%'
+						</when>
+					</choose>
+				</trim>
+			</foreach>
+		</trim>
+	</sql>
+
+	<select id="getList" resultType="org.lilaco.domain.BoardVO">
+		<![CDATA[
+			select * from tbl_board where bno > 0
+		]]>
+	</select>
+	
+	<!-- List Pagination 294 page -->
+	<!-- Add search function 335 page -->
+	<select id="getListWithPaging" resultType="org.lilaco.domain.BoardVO">
+		<![CDATA[
+			select 
+				bno, title, content, writer, regdate, updatedate
+			from 
+				(
+				select /*+INDEX_DESC(tbl_board pk_board) */
+					rownum rn, bno, title, content, writer, regdate, updatedate
+				from 
+					tbl_board
+				where 
+		]]>
+		
+		<!-- sql태그에 작성한 것 include로 추가하기 -->
+		<include refid="criteria"></include>
+		
+		<![CDATA[
+			rownum <= #{pageNum} * #{amount}
+			)
+		where rn > (#{pageNum} -1) * #{amount}
+		]]>
+	</select>
+	
+	<!-- Total Count -->
+	<select id="getTotalCount" resultType="int">
+		select 
+			count(*) 
+		from 
+			tbl_board 
+		where 
+			<include refid="criteria"></include>
+			bno > 0	
+	</select>
+
+	<insert id="insert">
+		insert into tbl_board (bno, title, content, writer) 
+		values (seq_board.nextval, #{title}, #{content}, #{writer})
+	</insert>
+	
+	<insert id="insertSelectKey">
+	
+		<selectKey keyProperty="bno" order="BEFORE" resultType="long">
+			select seq_board.nextval from dual
+		</selectKey>
+		
+		insert into tbl_board (bno, title, content, writer) 
+		values (#{bno}, #{title}, #{content}, #{writer})
+	</insert>
+	
+	<select id="read" resultType="org.lilaco.domain.BoardVO">
+		select * from tbl_board where bno = #{bno}
+	</select>
+	
+	<delete id="delete">
+		delete from tbl_board where bno = #{bno}
+	</delete>
+	
+	<update id="update">
+		update tbl_board 
+		set 
+			title = #{title},
+			content = #{content}, 
+			writer = #{writer}, 
+			updateDate = sysdate
+		where 
+			bno = #{bno}
+	</update>
+	
+</mapper> 
