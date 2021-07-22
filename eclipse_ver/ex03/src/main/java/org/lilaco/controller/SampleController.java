@@ -89,7 +89,7 @@ public class SampleController {
 	// 다른 메서드와 3달리 @PostMapping이 적용된 이유는 @RequestBody가 말 그대로 요청(request)한 내용(body)를 처리하기 때문에
 	// 일반적인 파라미터 전달방식을 사용할 수 없다.
 	@PostMapping("/ticket")
-	public Ticket convert(@RequestBody Ticket ticket) {
+	public Ticket convert(@RequestBody Ticket ticket) {//JSON으로 전달되는 데이터를 받아서 Ticket 타입으로 변환.
 		
 		log.info("convert.......ticket" + ticket);
 		
