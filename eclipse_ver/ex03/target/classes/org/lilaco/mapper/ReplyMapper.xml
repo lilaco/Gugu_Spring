@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 반드시 mapper 의 namespace 속성값을 Mapper 인터페이스와 동일한 이름으로 지정. -->
+<mapper namespace="org.lilaco.mapper.ReplyMapper">
+
+	<insert id="insert">
+		insert 
+			into tbl_reply (rno, bno, reply, replyer)
+		values
+			(seq_reply.nextval, #{bno}, #{reply}, #{replyer})
+	</insert>
+	
+	<select id="read" resultType="org.lilaco.domain.ReplyVO">
+		select 
+			* 
+		from 
+			tbl_reply 
+		where 
+			rno = #{rno}
+	</select>
+	
+	<delete id="delete">
+		delete from 
+			tbl_reply 
+		where 
+			rno = #{rno}
+	</delete>
+	
+	<update id="update">
+		update 
+			tbl_reply 
+		set 
+			reply = #{reply}, updateDate = sysdate 
+		where 
+			rno = #{rno}
+	</update>
+	
+	<!-- List with pagination -->
+	<select id="getListWithPaging" resultType="org.lilaco.domain.ReplyVO">
+		select
+			rno, bno, reply, replyer, replyDate, updateDate
+		from
+			tbl_reply
+		where
+			bno = #{bno}
+		order by
+			rno asc
+	</select>
+</mapper>
