@@ -45,3 +45,8 @@ alter table tbl_reply add constraint fk_reply_board
 foreign key (bno) references tbl_board (bno);
 
 commit;
+
+select * from tbl_board where rownum <10 order by bno desc;
+
+-- 댓글이 삽입되었는지 확인
+select * from tbl_reply order by rno desc;
