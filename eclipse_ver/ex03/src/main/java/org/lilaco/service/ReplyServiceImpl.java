@@ -15,11 +15,11 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class ReplyServiceImpl implements ReplyService{
 	
-//	@Setter(onMethod_ = @Autowired)
-//	private ReplyMapper mapper;
+	@Setter(onMethod_ = @Autowired)
+	private ReplyMapper mapper;
 	
 	// Spring 4.3부터는 생성자와 자동주입을 이용하여 아래와 같이 처리 가능
-	private ReplyMapper mapper;
+	//private ReplyMapper mapper;
 	
 	@Override
 	public int register(ReplyVO replyVO) {
