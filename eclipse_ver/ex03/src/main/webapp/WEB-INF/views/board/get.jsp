@@ -67,6 +67,20 @@
 $(document).ready(function(){
 	
 	console.log(replyService);
+	console.log("=================");
+	console.log("JS TEST");
+	
+	var bnoValue = '<c:out value="${board.bno}"/>';
+	
+	//for replyService add test from reply.js
+	replyService.add(
+		{reply:"JS Test", replyer:"tester", bno:bnoValue}
+		,
+		function(result){
+			alert("RESULT: " + result);
+		}
+	);
+	
 	
 	var operForm = $("#operForm");
 	
