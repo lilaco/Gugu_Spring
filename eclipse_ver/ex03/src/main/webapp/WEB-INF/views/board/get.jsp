@@ -60,8 +60,14 @@
 
 <%@ include file="../includes/footer.jsp" %>
 
+<!-- script의 모듈화 -->
+<script type="text/javascript" src="/resources/js/reply.js"></script>
+
 <script>
 $(document).ready(function(){
+	
+	console.log(replyService);
+	
 	var operForm = $("#operForm");
 	
 	$("button[data-oper='modify']").on("click", function(e){
