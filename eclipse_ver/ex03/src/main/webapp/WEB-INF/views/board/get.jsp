@@ -81,6 +81,24 @@ $(document).ready(function(){
 		}
 	);
 	
+	//from replyService getList from reply.js
+	replyService.getList({bno:bnoValue, page:1}, function(list){
+		
+		for(var i = 0, len = list.length||0; i < len; i++ ){
+			console.log(list[i]);
+		}
+	});
+	
+	// 댓글 삭제 테스트 from replyService remove from reply.js
+	replyService.remove(23, function(count) {
+		console.log(count);
+		
+		if (count === "success") {
+			alert("REMOVED");
+		}
+	}, function(err) {
+		alert('ERROR...');
+	});
 	
 	var operForm = $("#operForm");
 	
