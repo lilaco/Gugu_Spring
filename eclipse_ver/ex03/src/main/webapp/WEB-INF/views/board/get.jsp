@@ -89,7 +89,7 @@ $(document).ready(function(){
 		}
 	});
 	
-	// 댓글 삭제 테스트 from replyService remove from reply.js
+	// 23번 댓글 삭제 테스트 from replyService remove from reply.js
 	replyService.remove(23, function(count) {
 		console.log(count);
 		
@@ -98,6 +98,20 @@ $(document).ready(function(){
 		}
 	}, function(err) {
 		alert('ERROR...');
+	});
+	
+	// 22번 댓글 수정 테스트 from replyService update from reply.js
+	replyService.update({
+		rno : 22,
+		bno : bnoValue,
+		reply : "Modified Reply...."
+	}, function(result) {
+		alert("수정완료....");
+	});
+	
+	// 댓글 조회처리 from replyService get from reply.js
+	replyService.get(10, function(data){
+		console.log(data);
 	});
 	
 	var operForm = $("#operForm");
