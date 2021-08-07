@@ -105,6 +105,9 @@ $(document).ready(function(){
 	console.log("JS TEST");
 	
 	var bnoValue = '<c:out value="${board.bno}"/>';
+	var replyUL = $(".chat");
+	
+	showList(1);
 	
 	//for replyService add test from reply.js
 	replyService.add(
@@ -164,4 +167,23 @@ $(document).ready(function(){
 		
 	});
 });
+
+/* 책에서는 document.ready 내부에 존재하였는데 좋지 못한 코드. 왜 안에 삽입했을까? */
+function showList(page){
+	replyService.getList({bno:bnoValue,page: page|| 1}, function(list) {
+		var str="";
+		if(list == null || list.length == 0){
+			replyUL.html("");
+			
+			return;
+		}
+		for(var i = 0, len = list.length || 0; i < len; i++) {
+			str += "<li class='left clearfix' data-rno='"+list[i].rno"'>";
+			str +="	<div><div class='header'><strong class='primary-font'>"+list[i].replyer+"</strong>";
+			str +="		<small class='pull-right text-muted'>"+list[i].replyDate+"</small></div>";
+			str +="		<p>"+list[i].reply+"</p></div></li>";
+		}
+		replyUL.html(str);
+	});/*  */
+}
 </script>
